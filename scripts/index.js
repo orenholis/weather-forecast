@@ -54,8 +54,10 @@ class CityPicker extends Sword {
 		this.el = this.createElement({
 			className: 'city-picker',
 			children: [{
+				ref: 'citySearch',
+				disabled: true,
 				nodeName: 'input',
-				placeholder: 'Enter city name',
+				placeholder: 'List of cities is being loaded...',
 				'on:input': e => {
 					this.cityList.innerHTML = '';
 					this.cityList.className = 'city-list';
@@ -92,12 +94,20 @@ class CityPicker extends Sword {
 			}]
 		}, this);
 
-		readTextFile("city.list.json", (text) => {
-			const data = JSON.parse(text);
+		readTextFile("city.list.json", (json) => {
+			const myWorker = new Worker("scripts/worker.js");
+			myWorker.postMessage({
+				json,
+				replaceSpecialLetters: JSON.stringify(replaceSpecialLetters, (k, v) => {
+					return v.toString()
+				})
+			});
 
-			for (const city of data) {
-				this.cities.set(replaceSpecialLetters(city.name), city);
-			}
+			myWorker.onmessage = function(e) {
+				this.cities = e.data;
+				this.citySearch.setAttribute('placeholder', 'Enter city name');
+				this.citySearch.removeAttribute('disabled');
+			}.bind(this);
 		});
 	}
 

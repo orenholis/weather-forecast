@@ -35,7 +35,6 @@
 }
 
 .forecast {
-  display: flex;
   max-width: 100%;
   padding: 30px;
 }
