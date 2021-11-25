@@ -1,6 +1,8 @@
 class Forecast extends Sword {
 	loadForecast(weather) {
-		this.el.innerHTML = '';
+		this.forecastBoxes.innerHTML = '';
+		const temperatures = [];
+		const days = [];
 
 		const forecast = this.createElement({
 			className: 'forecast-table',
@@ -15,6 +17,8 @@ class Forecast extends Sword {
 					hour12: false
 				})
 				const weekDay = date.toLocaleDateString(language,  {weekday: 'long'})
+				temperatures.push(d.temp.day)
+				days.push(weekDay);
 
 				return {
 					className: 'day-forecast',
@@ -35,13 +39,38 @@ class Forecast extends Sword {
 			})
 		})
 
-		this.el.appendChild(forecast);
+		new Chart("forecastGraph", {
+			type: "bar",
+			data: {
+				labels: days,
+				datasets: [{
+					data: temperatures
+				}]
+			},
+			options: {
+				legend: {display: false},
+				title: {
+					display: true,
+					text: "Temperature forecast for next week"
+				}
+			}
+		});
+
+		this.forecastBoxes.appendChild(forecast);
 	}
 
 	render() {
 		this.el = this.createElement({
-			className: 'forecast'
-		})
+			className: 'forecast',
+			children: [{
+				ref: 'forecastBoxes'
+			},{
+				children: [{
+					id: 'forecastGraph',
+					nodeName: 'canvas'
+				}]
+			}]
+		}, this)
 	}
 }
 
