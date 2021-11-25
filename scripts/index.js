@@ -104,6 +104,10 @@ class CityPicker extends Sword {
 						}
 					}
 
+					if (citiesFiltered.length === 0) {
+						this.hideWhisperer();
+					}
+
 					for (const city of citiesFiltered) {
 						const cityEl = this.createElement({
 							textContent: city.name,
