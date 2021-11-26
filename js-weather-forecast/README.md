@@ -15,10 +15,20 @@ text `Your api key` with you key.
 
 ## Supported web browsers
 
+In this section described in which web browser project can be run.
+
+### PC
+
 1. Mozilla Firefox
 2. Google chrome
 3. Safari
 4. Microsoft Edge
+
+### Mobile
+
+1. Mozilla Firefox
+2. Google chrome
+3. Safari
 
 ## Installation and start up
 
