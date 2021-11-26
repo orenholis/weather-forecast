@@ -154,11 +154,15 @@ class App extends Sword {
 	API_KEY = 'Your api key';
 
 	async loadForecast(city) {
-		const data = await fetch(`https://api.openweathermap.org/data/2.5/
+		try {
+			const data = await fetch(`https://api.openweathermap.org/data/2.5/
 			onecall?lat=${city.coord.lat}&lon=${city.coord.lon}&exclude=${city.part}&units=metric&appid=${this.API_KEY}`)
-		const weather = await data.json()
+			const weather = await data.json()
 
-		this.weatherShow.loadForecast(weather);
+			this.weatherShow.loadForecast(weather);
+		} catch (ex) {
+			this.wrongApiKey.className = 'wrong-api-key';
+		}
 	}
 
 	render() {
@@ -175,6 +179,11 @@ class App extends Sword {
 			},{
 				class: Forecast,
 				ref: 'weatherShow'
+			},{
+				className: 'invisible',
+				ref: 'wrongApiKey',
+				nodeName: 'h1',
+				textContent: 'Wrong api key'
 			}]
 		}, this)
 	}
