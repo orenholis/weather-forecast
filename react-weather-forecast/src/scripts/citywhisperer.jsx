@@ -7,7 +7,8 @@ export default class CityPicker extends React.Component {
 
 		this.state = {
 			cities: [],
-			citiesLoaded: new Map()
+			citiesLoaded: new Map(),
+			city: ''
 		}
 
 		this.filter = this.filterCities.bind(this);
@@ -29,7 +30,10 @@ export default class CityPicker extends React.Component {
 			}
 		}
 
-		this.setState({cities: citiesFiltered})
+		this.setState({
+			cities: citiesFiltered,
+			city: e.target.value
+		})
 	}
 
 	retrieveJSON() {
@@ -50,8 +54,8 @@ export default class CityPicker extends React.Component {
 	}
 
 	selectCity(city) {
-		console.log(city)
 		this.props.cb(city);
+		this.setState({city: city.name});
 		this.setState({cities: []})
 	}
 
@@ -62,6 +66,7 @@ export default class CityPicker extends React.Component {
 					disabled={this.state.citiesLoaded.size === 0}
 					placeholder={this.state.citiesLoaded.size === 0 ? 'List of cities is being loaded...' : 'Enter city name'}
 					onChange={this.filter}
+					value={this.state.city}
 				/>
 				{
 					this.state.cities.length > 0 &&
