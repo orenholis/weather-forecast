@@ -6,7 +6,12 @@ from 200 000 cities. You start typing in input and application
 will help you and show you first 15 matches. Values
 found for selected city are displayed as 7 boxes and
 graph below. All values and cities are drawn from
-https://openweathermap.org/api.
+https://openweathermap.org/api. 
+
+For downloading weather data you will need api key which
+you found after registration at this link https://home.openweathermap.org/api_keys.
+After that copy key and in file `scrpits/index.js` replace on the line 154
+text `Your api key` with you key.
 
 ## Supported web browsers
 

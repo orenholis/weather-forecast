@@ -151,7 +151,7 @@ class CityPicker extends Sword {
 }
 
 class App extends Sword {
-	API_KEY = '';
+	API_KEY = 'Your api key';
 
 	async loadForecast(city) {
 		const data = await fetch(`https://api.openweathermap.org/data/2.5/
