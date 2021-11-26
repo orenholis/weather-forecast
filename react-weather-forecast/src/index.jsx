@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Forecast from "./scripts/forecast";
 import CityPicker from "./scripts/citywhisperer";
 import './styles/index.css';
 
@@ -28,6 +29,10 @@ class ReactApp extends React.Component {
 		return(
 			<div>
 				<CityPicker cb={this.loadForecast}/>
+				{
+					!!this.state.forecast &&
+						<Forecast forecast={this.state.forecast}/>
+				}
 			</div>
 		)
 	}
