@@ -10,7 +10,7 @@ class ReactApp extends React.Component {
 
 		this.state = {
 			forecast: null,
-			api_key: 'your api key'
+			api_key: 'Your api key'
 		}
 
 		this.loadForecast = this.handleForecastLoad.bind(this);
