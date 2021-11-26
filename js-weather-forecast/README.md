@@ -22,8 +22,24 @@ text `Your api key` with you key.
 
 ## Installation and start up
 
-Download from git and run index.html file in your web browser.
-Html files are run directly, which means you put instead of 
+If you want to run project locally you must follow all steps described
+below. For running this project you will need nodejs and npm. On this
+page https://medium.com/@hayasnc/how-to-install-nodejs-and-npm-on-mac-using-homebrew-b33780287d8f
+is short guide how to install them on MacOS.
+
+### SASS
+
+For building sass scripts you will need to install sass compiler, which
+can be installed in terminal executing command `npm install -g sass`.
+After installation, you can simply run `sass [file name].sass [file name].css`
+which builds your sass into css file named as you described in command.
+
+### Project
+
+1. Download from git
+2. Run `index.html` file in your web browser.
+
+3. Html files are run directly, which means you put instead of 
 url path, path to file in web browser.
 
 ## Inside structure 
