@@ -10,7 +10,8 @@ class ReactApp extends React.Component {
 
 		this.state = {
 			forecast: null,
-			api_key: 'Your api key'
+			api_key: 'Your api key',
+			wrongApiKey: false
 		}
 
 		this.loadForecast = this.handleForecastLoad.bind(this);
@@ -21,6 +22,11 @@ class ReactApp extends React.Component {
 		const data = await fetch(`https://api.openweathermap.org/data/2.5/
 			onecall?lat=${city.coord.lat}&lon=${city.coord.lon}&exclude=${city.part}&units=metric&appid=${this.state.api_key}`)
 		const forecast = await data.json()
+
+		if (!!forecast.cod) {
+			this.setState({wrongApiKey: true})
+			return;
+		}
 
 		this.setState({forecast})
 	}
@@ -33,6 +39,10 @@ class ReactApp extends React.Component {
 				{
 					!!this.state.forecast &&
 						<Forecast forecast={this.state.forecast}/>
+				}
+				{
+					!!this.state.wrongApiKey &&
+						<h1 className={'wrong-api-key'}>Your api key is wrong</h1>
 				}
 			</div>
 		)
