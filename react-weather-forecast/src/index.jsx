@@ -27,7 +27,8 @@ class ReactApp extends React.Component {
 
 	render() {
 		return(
-			<div>
+			<div className={'app'}>
+				<h1>React weather forecast</h1>
 				<CityPicker cb={this.loadForecast}/>
 				{
 					!!this.state.forecast &&
