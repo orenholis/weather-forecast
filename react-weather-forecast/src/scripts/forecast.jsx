@@ -71,19 +71,19 @@ export default class Forecast extends React.Component {
 					data={{
 						labels: days,
 						datasets: [{
+							label: 'Temperature forecast for next week',
 							data: temperatures
 						}]
 					}}
 
 					options={{
-						title:{
-							display:true,
-							text:'Temperature forecast for next week',
-							fontSize:20
+						title: {
+							display: true,
+							fontSize: 20
 						},
-						legend:{
-							display:true,
-							position:'right'
+						legend: {
+							display: true,
+							position: 'right'
 						}
 					}}
 				/>
